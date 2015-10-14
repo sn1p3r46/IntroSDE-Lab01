@@ -32,6 +32,10 @@ public class HealthProfile {
 	public String toString() {
 		return "Height="+height+", Weight="+weight;
 	}
+	
+	public double getBMI(){
+		return this.getWeight()/Math.pow(this.getHeight(), 2);
+	}
 
 	// add accessor for the newly created BMI
 	// the getter can respond with the calculation (weight divided the height in meters elevated to the power of 2) 

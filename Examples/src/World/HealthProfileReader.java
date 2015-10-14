@@ -32,7 +32,11 @@ public class HealthProfileReader {
 		database.put(String.valueOf(guido.getId()), guido);
     }
 
-	
+	public static double getBMI(String personId){
+		Person p = database.get(personId);
+		HealthProfile hp = p.gethProfile();
+		return hp.getBMI();
+	}
 
 	public static Person createPerson(String name, String surname){
 		Person newPerson = new Person(name, surname);
@@ -61,6 +65,7 @@ public class HealthProfileReader {
 		}
 		
 	}
+	
 	
 	/**
 	 * The health profile reader gets information from the command line about
@@ -98,12 +103,14 @@ public class HealthProfileReader {
 				if(args[1].equals("show")){
 					long PId = Long.valueOf(args[2]);
 					displayHealthProfile(PId);
+					getBMI(args[2]);
 				}
 				else if(args[1].equals("update")){
 					if (argCount == 5){
 						System.out.println("sONO dentro update");
 						updateHealthProfile(Long.valueOf(args[2]), Double.valueOf(args[3]), Double.valueOf(args[4]));
 						displayHealthProfile(Long.valueOf(args[2]));
+						
 					
 					} else {
 						System.out.println(" ERROR in Parameters...");
